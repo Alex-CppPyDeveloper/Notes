@@ -1,0 +1,36 @@
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">Лабораторная работа №11</span>
+  </div>
+</nav>
+
+<div class="container">
+  <form (submit)="addNotes(name,text)">
+    <div class="mb-3">
+      <label for="name" class="form-label">Название заметки</label>
+      <input type="text" class="form-control" id="name" [(ngModel)]="name" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="mb-3">
+      <label for="text" class="form-label">Текст заметки</label>
+      <textarea class="form-control" id="text" [(ngModel)]="text" [ngModelOptions]="{standalone: true}"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <button type="reset" class="btn btn-primary" style="margin-left: 10px;" (click) = "resetNote()">Очистить</button>
+  </form>
+
+  <div class="row" style="margin-top: 10px">
+
+    <div class="col-sm-6" *ngFor="let note of notes">
+      <div class="card" style="margin-bottom: 10px">
+        <div class="card-body">
+          <h5 class="card-title">{{note.name}}</h5>
+          <p class="card-text">{{note.text}}</p>
+          <p class="card-text">{{note.date}}</p>
+          <a class="btn btn-warning" (click)="removeNotes(note.id)">Удалить</a>
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </div>
+
